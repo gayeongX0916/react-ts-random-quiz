@@ -10,6 +10,7 @@ type QuizSectionProps = {
   current: number;
   total: number;
   onNext: () => void;
+  onAnswer: (isCorrect: boolean) => void;
 };
 
 const decodeHtml = (html: string) => {
@@ -23,6 +24,7 @@ const QuizSection = ({
   current,
   total,
   onNext,
+  onAnswer,
 }: QuizSectionProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -40,8 +42,10 @@ const QuizSection = ({
 
   const handleCheck = () => {
     if (selectedAnswer !== null) {
+      const isCorrect = selectedAnswer === question.correct_answer;
       setIsAnswered(true);
       setShowResult(true);
+      onAnswer(isCorrect);
     }
   };
 
@@ -83,7 +87,11 @@ const QuizSection = ({
               : `❌ 틀렸습니다. 정답: ${decodeHtml(question.correct_answer)}`}
           </div>
         )}
-        {showResult && <button onClick={handleNext} className="quiz-next">다음</button>}
+        {showResult && (
+          <button onClick={handleNext} className="quiz-next">
+            다음
+          </button>
+        )}
       </div>
     </>
   );

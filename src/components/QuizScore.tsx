@@ -3,7 +3,7 @@ type QuizScoreProps = {
 };
 
 const QuizScore = ({ score }: QuizScoreProps) => {
-  return <div className="quiz-score">점수 : </div>;
+  return <div className="quiz-score">점수 : {score} / 10</div>;
 };
 
 export default QuizScore;

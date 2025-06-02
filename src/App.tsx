@@ -19,7 +19,6 @@ function App() {
       <div>로딩 중...</div>;
     }
   }, []);
-  console.log(questions);
 
   return (
     <div className="random-quiz">
@@ -33,6 +32,11 @@ function App() {
           current={currentQuestionIndex + 1}
           total={questions.length}
           onNext={() => setCurrentQuestionIndex((prev) => prev + 1)}
+          onAnswer={(isCorrect: boolean) => {
+            if (isCorrect) {
+              setScore((prev) => prev + 1);
+            }
+          }}
         />
       </section>
     </div>
