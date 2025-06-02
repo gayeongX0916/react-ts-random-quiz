@@ -47,3 +47,7 @@
   cursor: pointer;
   height: 35px;
 }
+
+.quiz-button-container button:hover{
+  background-color: rgb(0, 81, 255);
+}

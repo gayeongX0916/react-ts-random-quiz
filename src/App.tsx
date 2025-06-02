@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import QuizScore from "./components/QuizScore";
 import QuizSection from "./components/QuizSection";
+import { fetchQuizData } from "./api/fetchQuiz";
 
 function App() {
+  const [score, setScore] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchQuizData().then((quizData) => {
+      setQuestions(quizData);
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <div className="random-quiz">
       <div className="quiz-title">
@@ -10,7 +23,7 @@ function App() {
         <QuizScore/>
       </div>
       <section className="quiz-section">
-        <QuizSection />
+        <QuizSection        />
       </section>
     </div>
   );
