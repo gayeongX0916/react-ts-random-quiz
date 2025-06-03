@@ -28,7 +28,6 @@ const QuizSection = ({
 }: QuizSectionProps) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [showResult, setShowResult] = useState(false);
 
   if (!question) return <div>로딩 중...</div>;
 
@@ -44,7 +43,6 @@ const QuizSection = ({
     if (selectedAnswer !== null) {
       const isCorrect = selectedAnswer === question.correct_answer;
       setIsAnswered(true);
-      setShowResult(true);
       onAnswer(isCorrect);
     }
   };
@@ -52,7 +50,6 @@ const QuizSection = ({
   const handleNext = () => {
     setSelectedAnswer(null);
     setIsAnswered(false);
-    setShowResult(false);
     onNext();
   };
 
@@ -87,7 +84,7 @@ const QuizSection = ({
               : `❌ 틀렸습니다. 정답: ${decodeHtml(question.correct_answer)}`}
           </div>
         )}
-        {showResult && (
+        {isAnswered && (
           <button onClick={handleNext} className="quiz-next">
             다음
           </button>
