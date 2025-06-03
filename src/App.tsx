@@ -4,9 +4,16 @@ import QuizScore from "./components/QuizScore";
 import QuizSection from "./components/QuizSection";
 import { fetchQuizData } from "./api/fetchQuiz";
 
+type Question = {
+  category: string;
+  question: string;
+  incorrect_answers: string[];
+  correct_answer: string;
+};
+
 function App() {
   const [score, setScore] = useState(0);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
