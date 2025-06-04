@@ -17,14 +17,15 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
+  if (loading) {
+    <div>로딩 중...</div>;
+  }
+
   useEffect(() => {
     fetchQuizData().then((quizData) => {
       setQuestions(quizData);
       setLoading(false);
     });
-    if (!loading) {
-      <div>로딩 중...</div>;
-    }
   }, []);
 
   return (
@@ -33,19 +34,17 @@ function App() {
         <h1>랜덤퀴즈 앱</h1>
         <QuizScore score={score} />
       </div>
-      <section className="quiz-section">
-        <QuizSection
-          question={questions[currentQuestionIndex]}
-          current={currentQuestionIndex + 1}
-          total={questions.length}
-          onNext={() => setCurrentQuestionIndex((prev) => prev + 1)}
-          onAnswer={(isCorrect: boolean) => {
-            if (isCorrect) {
-              setScore((prev) => prev + 1);
-            }
-          }}
-        />
-      </section>
+      <QuizSection
+        question={questions[currentQuestionIndex]}
+        current={currentQuestionIndex + 1}
+        total={questions.length}
+        onNext={() => setCurrentQuestionIndex((prev) => prev + 1)}
+        onAnswer={(isCorrect: boolean) => {
+          if (isCorrect) {
+            setScore((prev) => prev + 1);
+          }
+        }}
+      />
     </div>
   );
 }

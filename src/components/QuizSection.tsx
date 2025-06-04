@@ -54,7 +54,7 @@ const QuizSection = ({
   };
 
   return (
-    <>
+    <div className="quiz-section">
       <h4>
         문제 : {current}/{total}
       </h4>
@@ -72,25 +72,24 @@ const QuizSection = ({
         ))}
       </div>
       <div className="quiz-result-container">
-        {!isAnswered && (
+        {!isAnswered ? (
           <button onClick={handleCheck} className="quiz-check">
             확인
           </button>
-        )}
-        {isAnswered && (
-          <div className="quiz-result-message">
-            {selectedAnswer === question.correct_answer
-              ? "✅ 정답입니다!"
-              : `❌ 틀렸습니다. 정답: ${decodeHtml(question.correct_answer)}`}
-          </div>
-        )}
-        {isAnswered && (
-          <button onClick={handleNext} className="quiz-next">
-            다음
-          </button>
+        ) : (
+          <>
+            <div className="quiz-result-message">
+              {selectedAnswer === question.correct_answer
+                ? "✅ 정답입니다!"
+                : `❌ 틀렸습니다. 정답: ${decodeHtml(question.correct_answer)}`}
+            </div>
+            <button onClick={handleNext} className="quiz-next">
+              다음
+            </button>
+          </>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
