@@ -14,6 +14,7 @@ React + TypeScript + Vite로 만든 랜덤퀴즈 앱
 - CSS
 - React
 - TypeScript
+- Vite
 
 ![](https://velog.velcdn.com/images/gayeong__0916/post/99dcd3e4-18fd-4f3a-8ba7-2f1793e71e25/image.png)
 ![](https://velog.velcdn.com/images/gayeong__0916/post/6733b0e9-9980-4d87-b620-f03bbfe253b0/image.png)
